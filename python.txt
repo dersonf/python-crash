@@ -1,0 +1,25 @@
+### variáveis
+Elas não podem começar com números
+
+1_variavel = "Essa variável vai dar erro."
+Não podem conter espaços
+evitar usar keywords do python e funções, como print, if, def, then
+variavel = variavel.strip() - grava a variável sem espaços no inicio e fim
+apostrofo = "One of the Python's streghts is its diverse community"
+
+# metodos
+metodos aceitam opções nos parenteses
+variavel.title() - coloca a primeira letra em maiusculo
+variavel.upper() - deixa tudo maiusculo
+variavel.lower() - deixa tudo minusculo
+variavel.rstrip() - remove espaços em branco a direita
+variavel.lstrip() - remove espaços em branco a esquerda
+variavel.strip() - remove espaços em branco a direita e esquerda
+
+# f-string
+introduzida no python 3.6, em versões menores é necessário utilizar .format
+
+full_name = "{}{}".format(first_name, last_name)
+
+\t - tab
+\n - linha nova
