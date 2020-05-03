@@ -23,3 +23,25 @@ full_name = "{}{}".format(first_name, last_name)
 
 \t - tab
 \n - linha nova
+
+# Operações aritiméticas
+** = Representa exponenciação
+3*3
+3 * 3
+As opções acima funcionam da mesmo forma
+
+números decimais são definidos como float
+o python não precisa definir se o número é inteiro ou decimal, mas em qualquer operacação onde seja utilizado float o resultado sempre será float
+é possível utilizar espaços como divisão visuals dos números
+numeros definidos com underlines na hora de imprimir o python os remove, mesmo se os underlines forem colocados fora do agrupamento padrão
+
+#!/usr/bin/python3
+universe_age = 14_000_000_000
+print(universe_age)
+
+# Definindo multiplas variáveis em uma única linha
+x, y, z = 'Anderson', 'Patrica', 'Gabriel'
+
+# Zen of python
+basta importar this e executar
+import this
