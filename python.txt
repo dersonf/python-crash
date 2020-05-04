@@ -45,3 +45,33 @@ x, y, z = 'Anderson', 'Patrica', 'Gabriel'
 # Zen of python
 basta importar this e executar
 import this
+
+# Listas
+Listas são itens dentro de colchetes [], cada item é separado por vírgula, é interessante que as listas sejam no plural já que geralmente vários itens são adicionados a elas.
+bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+
+Uma lista completa é extremamente desnecessária, por isso a lista possui um indice.
+
+para pegar o primeiro item da lista
+print(lista[0])
+
+#!/usr/bin/python3
+bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+# imprimir a lista inteira
+print(bicycles)
+# imprimir o 1º item da lista
+print(bicycles[0])
+# imprimir o 1º item da lista com a primmeira letra maiuscula
+print(bicycles[0].title())
+# imprimir o 3° item da lista com tudo em maiusculo
+print(bicycles[2].upper())
+# Imprimir o último item da lista
+print(bicycles[-1])
+
+Indices negativos vão do último ao primeiro, ou seja -2 penultimo, -3 anti penultimo
+
+# Utilizando a lista para imprimir uma mensagem
+#!/usr/bin/python3
+bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+message = f'Minha primeira bicicleta foi uma {bicycles[0].title()}'
+print(message)
