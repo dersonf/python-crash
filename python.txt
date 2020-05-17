@@ -75,3 +75,31 @@ Indices negativos vão do último ao primeiro, ou seja -2 penultimo, -3 anti pen
 bicycles = ['trek', 'cannondale', 'redline', 'specialized']
 message = f'Minha primeira bicicleta foi uma {bicycles[0].title()}'
 print(message)
+
+# Alterando o valor da lista
+Basta indicar a posição informando a lista e o índice
+bicycles[0] = 'Caloi'
+
+# adicionando valores a lista
+bicycles.append('trek')
+o metodo append adiciona o valor no fim da lista
+
+# adicionando valores em um local específico
+bicycles.insert(1, 'monark')
+
+# remover um item
+del bicycles[1]
+
+# pegar o último item e remover da lista
+o metodo pop() imprimi o último valor da lista e remove ele
+o valor pode ser armazenada em uma variável
+item_popped = bicycles.pop()
+bicycles.pop()
+
+# pegar um item em uma opsição específica da lista e remover
+bicycles.pop(1)
+
+# remover a entrada da lista pela string
+bicycles.remove('Caloi')
+funciona da mesma forma que o pop
+ele remove a primeira ocorrência da string da lista
