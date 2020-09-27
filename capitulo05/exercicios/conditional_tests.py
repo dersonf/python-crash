@@ -2,12 +2,12 @@
 
 car = 'subaru'
 pizza = 'portuguesa'
-carros = False
+carros = 'nao'
 idade = 40
-docker = True
-kubernetes = True
-python = False
-ansible = True
+docker = 'sim'
+kubernetes = 'sim'
+python = 'nao'
+ansible = 'sim'
 filhos = ['gabriel', 'luiza']
 esposa = 'patricia'
 luiza = 15
@@ -26,7 +26,7 @@ print("\nSua pizza favorita é calabreza: Eu acho que não.")
 print(pizza == 'calabreza')
 
 print("\nVocê gosta de carros?")
-print(carros == True)
+print(carros == 'sim')
 
 print("\nVocê é maior de idade?")
 print(idade >= 18)
@@ -35,16 +35,16 @@ print("\nVocê já pode ter carteirinha pra não pagar passagem?")
 print(idade >= 65)
 
 print("\nVocê domina python?")
-print(python == True)
+print(python == 'sim')
 
 print("\nVocê domina docker?")
-print(docker == True)
+print(docker == 'sim')
 
 print("\nVocê domina kubernetes?")
-print(kubernetes == True)
+print(kubernetes == 'sim')
 
 print("\nVocê domina ansible?")
-print(ansible == True)
+print(ansible == 'sim')
 
 print("\nVocê tem uma filha chamada Luiza?")
 print('Luiza'.lower() in filhos)
