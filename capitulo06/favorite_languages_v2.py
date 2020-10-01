@@ -15,4 +15,3 @@ for name, languages in favorite_languages.items():
     else:
         print(f"\n{name.title()}'s favorite languages is:")
         print(f"\t{language.title()}")
-

@@ -1,33 +1,41 @@
 #!/usr/bin/python3
 
-rex = {
+pet_0 = {
+    'nome': 'rex',
     'tipo': 'cachorro',
     'nome do dono': 'augusto',
     'idade': 5,
     }
-cloe = {
+pet_1 = {
+    'nome': 'cloe',
     'tipo': 'gato',
     'nome do dono': 'marisa',
     'idade': 3
     }
-chico = {
+pet_2 = {
+    'nome': 'chico',
     'tipo': 'papagaio',
     'nome do dono': 'ricardo',
     'idade': 4,
     }
-halph = {
+pet_3 = {
+    'nome': 'halph',
     'tipo': 'hamister',
     'nome do dono': 'vinicius',
     'idade': 2,
     }
-nadine = {
+pet_4 = {
+    'nome': 'nadine',
     'tipo': 'cobra',
     'nome do dono': 'lucio',
     'idade': 10
     }
-pets = [rex, cloe, chico, halph, nadine]
+pets = [pet_0, pet_1, pet_2, pet_3, pet_4]
 
 for pet in pets:
-    print(f"\nNome: {pet.title()}")
+    print()
     for k, v in pet.items():
-        print()
+        if k == 'idade':
+            print(f"{k.title()}: {v}")
+        else:
+            print(f"{k.title()}: {v.title()}")
