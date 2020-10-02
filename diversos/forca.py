@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from random import choice
 
-palavras = ['helicoptero','tamandua', 'giroscopio', 'janela']
+palavras = ['helicoptero', 'tamandua', 'giroscopio', 'janela']
 escolhida = choice(palavras)
 
 print(escolhida)
