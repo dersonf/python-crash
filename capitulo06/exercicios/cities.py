@@ -17,3 +17,11 @@ cities = {
         'fato sobre': 'No inverno é montado uma pista de patinação na praia.',
         },
     }
+
+for cidade, info_cidade in cities.items():
+    print(f"\nCidade: {cidade.title()}")
+    for info, dado in info_cidade.items():
+        if info == 'fato sobre':
+            print(f"\t{info.title()}: {dado}")
+        else:
+            print(f"\t{info.title()}: {dado.title()}")
