@@ -5,4 +5,5 @@ prompt += "\nPara sair digite sair. "
 message = ""
 while message != 'sair':
     message = input(prompt)
-    print(f"\nPapagaio: {message}")
+    if message != 'sair':
+        print(f"\nPapagaio: {message}")
