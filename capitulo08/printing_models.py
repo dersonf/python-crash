@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def print_models(unprinted_designs, completed_models):
     """
     Simulate printing each design, until none are left.
@@ -10,11 +11,13 @@ def print_models(unprinted_designs, completed_models):
         print(f"Printing model: {current_design}")
         completed_models.append(current_design)
 
+
 def show_completed_models(completed_models):
     """Show all the models that were printed."""
     print("\nThe following models have benn printed:")
     for completed_model in completed_models:
         print(completed_model)
+
 
 unprinted_designs = ['phone case', 'robot pendant', 'dodecahedron']
 completed_models = []
