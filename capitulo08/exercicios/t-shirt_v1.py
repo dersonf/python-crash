@@ -6,6 +6,7 @@ def make_shirt(tamanho, frase):
     print(f"\nA camiseta tamanho {tamanho.upper()} tem a frase:")
     print(frase)
 
+
 make_shirt('m', 'Farol alta na cara é igual mulher gritando no ouvido.')
 make_shirt(
     tamanho='m',

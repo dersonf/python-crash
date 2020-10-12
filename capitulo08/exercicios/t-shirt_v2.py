@@ -6,6 +6,7 @@ def make_shirt(tamanho='G', frase='I amo Pyhton'):
     print(f"\nA camiseta tamanho {tamanho.upper()} tem a frase:")
     print(frase)
 
+
 make_shirt()
 make_shirt('M')
 make_shirt('M', 'Eu amo minha esposa e filhos.')
