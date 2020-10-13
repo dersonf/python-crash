@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+#import show_messages
+from show_messages import show_messages
+from show_messages import show_messages as sm
+import show_messages as show
 
 messages = [
     'O pato faz qua.',
@@ -7,10 +11,7 @@ messages = [
     'Meu celular quebrou.',
 ]
 
-
-def show_messages(messages):
-    for message in messages:
-        print(message)
-
-
+#show_messages.show_messages(messages)
 show_messages(messages)
+sm(messages)
+show.show_messages(messages)
