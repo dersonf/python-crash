@@ -29,4 +29,3 @@ print(f"My dog's name is {your_dog.name}.")
 print(f"My dog is {your_dog.age} years old.")
 your_dog.sit()
 your_dog.roll_over()
-

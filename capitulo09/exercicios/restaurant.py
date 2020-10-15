@@ -24,4 +24,3 @@ print(f"O tipo de comida é {restaurante.cuisine_type}.")
 
 restaurante.describe_restaurant()
 restaurante.open_restaurant()
-

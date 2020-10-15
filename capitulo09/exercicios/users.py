@@ -22,7 +22,7 @@ class User:
             print("sexo: Masculino")
         if self.sexo == 'F':
             print("sexo: Feminino")
-       
+
     def greet_user(self):
         """Exibe uma saudação ao usuário."""
         if self.sexo == 'M':
