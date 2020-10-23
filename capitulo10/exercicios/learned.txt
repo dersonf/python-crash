@@ -1,0 +1,4 @@
+In Python you can open files.
+In Python you make math calcs.
+In Python you can create print messages.
+In Python you can make loops.
