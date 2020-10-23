@@ -1,10 +1,21 @@
 #!/usr/bin/python3
 
-file = 'learned.txt'
+file = 'learning_python.txt'
 
+# Print the entire file
 with open(file) as file_object:
     learned = file_object.read()
-print(learned.rstrip())
+    print(learned.rstrip())
 
-for line in learned.readlines():
-    print(line)
+
+# Print the entire file
+with open(file) as file_object:
+    for line in file_object:
+        print(line.rstrip())
+
+# Print a list
+with open(file) as file_object:
+    list = file_object.readlines()
+print(list)
+for line in list:
+    print(line.rstrip())
