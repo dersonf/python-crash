@@ -7,3 +7,9 @@ try:
         contents = f.read()
 except FileNotFoundError:
     print(f"Sorry, the {filename} does not exist.")
+else:
+    # Count the approximate number of word in the file.
+    words = contents.split()
+    num_words = len(words)
+    print(words)
+    print(f"The file {filename} has about {num_words} words.")
