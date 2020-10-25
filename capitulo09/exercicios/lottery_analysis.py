@@ -1,9 +1,7 @@
-#!/usr/bin/python3
-
 from random import choice
 
 series = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'A', 'B', 'C', 'D', 'E']
-my_tickets = ['11AB', '35D6']
+my_tickets = ['11AB', '35D6', '4290']
 
 
 def sort_ticket():
