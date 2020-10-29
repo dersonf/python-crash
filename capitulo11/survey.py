@@ -1,14 +1,14 @@
 class AnonymousSurvey:
-    """Collect anonumous answers to a survey question."""
+    """Collect anonymous answers to a survey question."""
 
-    def __ini__(self, question):
+    def __init__(self, question):
         """Store a question, and prepare to store responses."""
         self.question = question
         self.responses = []
 
     def show_question(self):
         """Show the survey question."""
-        print(self, question)
+        print(self.question)
 
     def store_response(self, new_response):
         """Store a single response to the survey."""
