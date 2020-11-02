@@ -7,10 +7,10 @@ from ship import Ship
 
 
 class AlienInvasion:
-    """Overall class to manage assets snd behavior."""
+    """Overall class to manage assets and behavior."""
 
     def __init__(self):
-        """Initialize the game. and create game resources."""
+        """Initialize the game and create game resources."""
         pygame.init()
         self.settings = Settings()
 
