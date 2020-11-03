@@ -8,7 +8,7 @@ class Ship:
         """Initialize the rocket and set its starting position."""
         self.screen = rocket_game.screen
         self.screen_rect = rocket_game.screen.get_rect()
-        self.image = pygame.image.load('images/rocket.bmp')
+        self.image = pygame.image.load('images/rocketv2.bmp')
         self.rect = self.image.get_rect()
         self.rect.center = self.screen_rect.center
 
