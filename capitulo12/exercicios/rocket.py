@@ -30,23 +30,35 @@ class Rocket:
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    self.rocket.moving_right = True
-                elif event.key == pygame.K_LEFT:
-                    self.rocket.moving_left = True
-                elif event.key == pygame.K_UP:
-                    self.rocket.moving_up = True
-                elif event.key == pygame.K_DOWN:
-                    self.rocket.moving_down = True
+                self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    self.rocket.moving_right = False
-                elif event.key == pygame.K_LEFT:
-                    self.rocket.moving_left = False
-                elif event.key == pygame.K_UP:
-                    self.rocket.moving_up = False
-                elif event.key == pygame.K_DOWN:
-                    self.rocket.moving_down = False
+                self._check_keyup_events(event)
+
+    def _check_keydown_events(self, event):
+        """Respond for keypresses."""
+        if event.key == pygame.K_RIGHT:
+            self.rocket.moving_right = True
+        elif event.key == pygame.K_LEFT:
+            self.rocket.moving_left = True
+        elif event.key == pygame.K_UP:
+            self.rocket.moving_up = True
+        elif event.key == pygame.K_DOWN:
+            self.rocket.moving_down = True
+        elif event.key == pygame.K_q:
+            sys.exit()
+
+    def _check_keyup_events(self, event):
+        """Respond for key release."""
+        if event.key == pygame.K_RIGHT:
+            self.rocket.moving_right = False
+        elif event.key == pygame.K_LEFT:
+            self.rocket.moving_left = False
+        elif event.key == pygame.K_UP:
+            self.rocket.moving_up = False
+        elif event.key == pygame.K_DOWN:
+            self.rocket.moving_down = False
+
+
 
 
 if __name__ == '__main__':

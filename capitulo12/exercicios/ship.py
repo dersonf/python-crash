@@ -1,4 +1,5 @@
 import pygame
+from settings import Settings
 
 
 class Ship:
@@ -11,6 +12,7 @@ class Ship:
         self.image = pygame.image.load('images/rocketv2.bmp')
         self.rect = self.image.get_rect()
         self.rect.center = self.screen_rect.center
+        self.settings = Settings()
 
         # Moviment flag
         self.moving_right = False
@@ -20,14 +22,14 @@ class Ship:
 
     def update(self):
         """Update ship position."""
-        if self.moving_right:
-            self.rect.x += 1
-        if self.moving_left:
-            self.rect.x -= 1
-        if self.moving_up:
-            self.rect.y -= 1
-        if self.moving_down:
-            self.rect.y += 1
+        if self.moving_right and self.rect.right < self.screen_rect.right:
+            self.rect.x += self.settings.rocket_speed
+        if self.moving_left and self.rect.left > 0:
+            self.rect.x -= self.settings.rocket_speed
+        if self.moving_up and self.rect.top > 0:
+            self.rect.y -= self.settings.rocket_speed
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.rect.y += self.settings.rocket_speed
 
     def blitme(self):
         self.screen.blit(self.image, self.rect)
