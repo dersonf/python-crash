@@ -59,8 +59,6 @@ class Rocket:
             self.rocket.moving_down = False
 
 
-
-
 if __name__ == '__main__':
     rocket = Rocket()
     rocket.run_game()
