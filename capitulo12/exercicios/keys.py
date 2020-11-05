@@ -12,6 +12,7 @@ class KeysPressed:
         self.screen = pygame.display.set_mode((800, 800))
         pygame.display.set_caption("Show presses Keys")
         self.bg_color = (200, 200, 200)
+        self.font = pygame.font.SysFont('Bitstream Charter', 30)
 
     def run_keys(self):
         """Start the main loop."""
@@ -19,6 +20,10 @@ class KeysPressed:
             self._check_events()
             self._update_screen()
             pygame.display.flip()
+
+    def print_event_key(self):
+        self.text = Texto
+
 
     def _update_screen(self):
         """Update images"""
@@ -28,7 +33,6 @@ class KeysPressed:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-
 
 if __name__ == '__main__':
     keys = KeysPressed()

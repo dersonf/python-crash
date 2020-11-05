@@ -3,4 +3,4 @@ class Settings:
 
     def __init__(self):
         """Function to store settings."""
-        self.rocket_speed = 3
+        self.rocket_speed = 1
