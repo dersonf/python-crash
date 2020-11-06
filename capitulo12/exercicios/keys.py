@@ -58,13 +58,16 @@ class KeysPressed:
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                self.pressed_key = pygame.key.get_pressed()
-                print(self.pressed_key)
+                # self.pressed_key = pygame.key.get_pressed()
+                # print(self.pressed_key)
                 if event.key == pygame.K_q:
                     sys.exit()
-                elif self.pressed_key:
-                    self.text.update(self.pressed_key)
+                # elif self.pressed_key:
+                #     self.text.update(self.pressed_key)
                     # self.text.default_text = event.key
+        for k, p in enumerate(pygame.key.get_pressed()):
+            if p:
+                self.text.update(pygame.key.name(k))
 
 if __name__ == '__main__':
     keys = KeysPressed()
