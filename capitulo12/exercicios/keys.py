@@ -1,7 +1,6 @@
 import pygame
 import sys
 from keys_settings import Settings
-from text import Text
 
 class KeysPressed:
     """Overall class to manage assets and behavior."""
@@ -15,8 +14,6 @@ class KeysPressed:
         pygame.display.set_caption("Show pressed Key")
         self.bg_color = (200, 200, 200)
 
-        self.text = Text(self)
-
     def run_keys(self):
         """Start the main loop."""
         while True:
@@ -26,7 +23,6 @@ class KeysPressed:
 
     def _update_screen(self):
         """Update images"""
-        self.text.blitme()
         self.screen.fill(self.bg_color)
 
 
@@ -37,6 +33,8 @@ class KeysPressed:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     sys.exit()
+                else:
+                    print(event.key)
 
 
 if __name__ == '__main__':
