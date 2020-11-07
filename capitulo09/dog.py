@@ -17,6 +17,7 @@ class Dog:
         """Simulate rolling over in response to a command."""
         print(f"{self.name} roled over!")
 
+
 my_dog = Dog('Willie', 6)
 your_dog = Dog('Lucy', 3)
 

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 requested_toppings = ['mushrooms', 'extra cheese', 'green peppers']
-#requested_toppings = []
+# requested_toppings = []
 
 if requested_toppings:
     for requested_topping in requested_toppings:

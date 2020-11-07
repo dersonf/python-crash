@@ -36,7 +36,7 @@ class AlienInvasion:
             for bullet in self.bullets.copy():
                 if bullet.rect.bottom <= 0:
                     self.bullets.remove(bullet)
-                print(len(self.bullets))
+                # print(len(self.bullets))
 
             self._update_screen()
 
@@ -52,7 +52,6 @@ class AlienInvasion:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
-
 
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
@@ -79,8 +78,8 @@ class AlienInvasion:
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
-        #self.screen.fill(self.settings.bg_color)
-        self.screen.blit(self.settings.background, [0,0])
+        # self.screen.fill(self.settings.bg_color)
+        self.screen.blit(self.settings.background, [0, 0])
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
