@@ -8,8 +8,8 @@ class Settings:
         """Initialize the game's settings."""
         # Screen settings
         self.background = pygame.image.load('images/background.bmp')
-        self.screen_width = 1200
-        self.screen_height = 800
+        self.screen_width = 800
+        self.screen_height = 600
         # self.bg_color = (230, 230, 230)
         # self.bg_color = (0, 0, 255)
 
@@ -21,3 +21,4 @@ class Settings:
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (237, 230, 123)
+        self.bullets_allowed = 3
