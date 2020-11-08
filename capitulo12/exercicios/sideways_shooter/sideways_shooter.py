@@ -20,6 +20,7 @@ class SidewaysShooter:
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         # self.settings.screen_width = self.screen.get_rect().width
         # self.settings.screen_height = self.screen.get_rect().height
+        self.screen_rect = self.screen.get_rect()
         pygame.display.set_caption("Sideways Shooter")
 
         self.ship = Ship(self)
@@ -85,7 +86,8 @@ class SidewaysShooter:
 
         # Get rid of bullets tht have disappeared.
         for bullet in self.bullets.copy():
-            if bullet.rect.bottom <= 0:
+            # print(bullet)
+            if bullet.rect.right >= self.screen_rect.right:
                 self.bullets.remove(bullet)
             # print(len(self.bullets))
 

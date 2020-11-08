@@ -12,7 +12,7 @@ class Ship:
 
         # Load the ship image and get its rect.
         # self.image = pygame.image.load('images/ship.bmp')
-        self.image = pygame.image.load('images/shipv2.bmp')
+        self.image = pygame.image.load('images/airplane.bmp')
         self.rect = self.image.get_rect()
 
         # Start each new ship at the bottom center of the screen.
@@ -27,12 +27,14 @@ class Ship:
 
     def update(self):
         """Update the ship's position based on the movement flag."""
-        if self.moving_up and self.rect.up < self.screen_rect.up:
+        # if self.moving_up and self.rect.top < self.screen_rect.top:
+        if self.moving_up and self.rect.top > 0:
             # self.rect.x += 1
-            self.y += self.settings.ship_speed
-        if self.moving_down and self.rect.left > 0:
-            # self.rect.x -= 1
             self.y -= self.settings.ship_speed
+        # if self.moving_down and self.rect.left > 0:
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            # self.rect.x -= 1
+            self.y += self.settings.ship_speed
 
         # Update rect object from self.y
         self.rect.y = self.y
