@@ -2,6 +2,7 @@ import pygame
 import sys
 from keys_settings import Settings
 
+
 class KeysPressed:
     """Overall class to manage assets and behavior."""
 
@@ -10,7 +11,7 @@ class KeysPressed:
         pygame.init()
         self.settings = Settings()
         self.screen = pygame.display.set_mode(
-            (self.settings.screen_width,self.settings.screen_height))
+            (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Show pressed Key")
         self.bg_color = (200, 200, 200)
 
@@ -24,7 +25,6 @@ class KeysPressed:
     def _update_screen(self):
         """Update images"""
         self.screen.fill(self.bg_color)
-
 
     def _check_events(self):
         for event in pygame.event.get():
