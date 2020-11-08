@@ -30,14 +30,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self.bullets.update()
-
-            # Get rid of bullets tht have disappeared.
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-                # print(len(self.bullets))
-
+            self._update_bullets()
             self._update_screen()
 
             # Make the most recently drawn screen visible.
@@ -84,6 +77,17 @@ class AlienInvasion:
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+
+    def _update_bullets(self):
+        """Update position of bullets and get rid of old bullets."""
+        # Update bullets position
+        self.bullets.update()
+
+        # Get rid of bullets tht have disappeared.
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
+            # print(len(self.bullets))
 
 
 if __name__ == '__main__':
