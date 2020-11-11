@@ -1,5 +1,6 @@
 import pygame
 from sys import exit
+from random import randint
 from settings import Settings
 from star import Star
 
@@ -36,10 +37,10 @@ class Stars:
         # Spacing between each star is equal to one star width.
         star = Star(self)
         star_width, star_height = star.rect.size
-        number_stars_x = self.settings.screen_width // (2 * star_width)
+        number_stars_x = self.settings.screen_width // star_width
 
         # Determine the number of rows of stars that fit on the screen.
-        number_rows = self.settings.screen_height // (2 * star_height)
+        number_rows = self.settings.screen_height // star_height
 
         # Create a full constellation.
         for row_number in range(number_rows):
@@ -50,9 +51,10 @@ class Stars:
         """Create a star and place it in the row."""
         star = Star(self)
         star_width, star_height = star.rect.size
-        star.x = star_width + 2 * star_width * star_number
+        star.x = star_width + randint(-2, 2) * star_width * star_number
         star.rect.x = star.x
-        star.rect.y = star.rect.height + 2 * star.rect.height * row_number
+        star.rect.y = star.rect.height + \
+            randint(-1, 1) * star.rect.height * row_number
         self.stars.add(star)
 
 
