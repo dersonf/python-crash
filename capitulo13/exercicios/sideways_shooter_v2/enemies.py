@@ -2,24 +2,24 @@ import pygame
 from pygame.sprite import Sprite
 
 
-class Alien(Sprite):
-    """A class to represent a single alien in the fleet."""
+class Enemy(Sprite):
+    """A class to represent the enemies."""
 
-    def __init__(self, ai_game):
-        """Initialize the alien and sets its starting position."""
+    def __init__(self, game_sws):
+        """Initilizing the enemies and the positions."""
         super().__init__()
-        self.screen = ai_game.screen
-        self.settings = ai_game.settings
+        self.screen = game_sws.screen
+        self.settings = game_sws.settings
 
-        # Load the alien image and sets its rect attribute.
-        self.image = pygame.image.load('images/alien.bmp')
+        # Load the enemy image and sets its rect attribute.
+        self.image = pygame.image.load('images/ufo.bmp')
         self.rect = self.image.get_rect()
 
-        # Start each new alien near the top left of screen.
+        # Start each new enemy near the top left of screen.
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
 
-        # Store de alien's exact horizontal position.
+        # Store de enemy's exact horizontal position.
         self.x = float(self.rect.x)
 
     def check_edges(self):
