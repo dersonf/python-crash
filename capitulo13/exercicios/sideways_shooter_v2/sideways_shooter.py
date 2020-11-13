@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import sys
+from random import randint
 import pygame
 from settings import Settings
 from ship import Ship
@@ -28,12 +29,15 @@ class SidewaysShooter:
         self.bullets = pygame.sprite.Group()
         self.enemies = pygame.sprite.Group()
 
+        self._create_enemy()
+
     def run_game(self):
         """Start the main loop for the game."""
         while True:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self.enemies.update()
             self._update_screen()
 
             # Make the most recently drawn screen visible.
@@ -80,6 +84,7 @@ class SidewaysShooter:
         self.ship.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+        self.enemies.draw(self.screen)
 
     def _update_bullets(self):
         """Update position of bullets and get rid of old bullets."""
@@ -92,6 +97,16 @@ class SidewaysShooter:
             if bullet.rect.right >= self.screen_rect.right:
                 self.bullets.remove(bullet)
             # print(len(self.bullets))
+
+    def _create_enemy(self):
+        """Create one enemy and place in the screen."""
+        enemy = Enemy(self)
+        enemy_width, enemy_height = enemy.rect.size
+        enemy.rect.x = self.screen_rect.right
+        print(self.screen_rect.right)
+        enemy.rect.y = randint(0, self.settings.screen_height - 2 * enemy_height)
+        print(enemy.rect.y)
+        self.enemies.add(enemy)
 
 
 if __name__ == '__main__':
