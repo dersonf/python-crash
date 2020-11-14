@@ -24,4 +24,4 @@ class Settings:
         self.bullets_allowed = 3
 
         # Enemy speed
-        self.enemy_max_speed = 5
+        self.enemy_max_speed = 2

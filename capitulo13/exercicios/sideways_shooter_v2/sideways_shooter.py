@@ -37,7 +37,7 @@ class SidewaysShooter:
             self._check_events()
             self.ship.update()
             self._update_bullets()
-            self.enemies.update()
+            self._update_enemy()
             self._update_screen()
 
             # Make the most recently drawn screen visible.
@@ -107,6 +107,13 @@ class SidewaysShooter:
         enemy.rect.y = randint(0, self.settings.screen_height - 2 * enemy_height)
         print(enemy.rect.y)
         self.enemies.add(enemy)
+
+    def _update_enemy(self):
+        for enemy in self.enemies.copy():
+            if enemy.rect.right <= 0:
+                self.enemies.remove(enemy)
+                self._create_enemy()
+        self.enemies.update()
 
 
 if __name__ == '__main__':
