@@ -96,16 +96,18 @@ class SidewaysShooter:
             # print(bullet)
             if bullet.rect.right >= self.screen_rect.right:
                 self.bullets.remove(bullet)
-            # print(len(self.bullets))
+        self._collision()
 
     def _create_enemy(self):
         """Create one enemy and place in the screen."""
         enemy = Enemy(self)
         enemy_width, enemy_height = enemy.rect.size
         enemy.rect.x = self.screen_rect.right
-        print(self.screen_rect.right)
-        enemy.rect.y = randint(0, self.settings.screen_height - 2 * enemy_height)
-        print(enemy.rect.y)
+        # print(self.screen_rect.right)
+        enemy.rect.y = randint(
+            0, self.settings.screen_height - 2 * enemy_height
+            )
+        # print(enemy.rect.y)
         self.enemies.add(enemy)
 
     def _update_enemy(self):
@@ -114,6 +116,19 @@ class SidewaysShooter:
                 self.enemies.remove(enemy)
                 self._create_enemy()
         self.enemies.update()
+        if not self.enemies:
+            self._create_enemy()
+
+    def _collision(self):
+        # Check collitions.
+        collitions = pygame.sprite.groupcollide(
+            self.bullets, self.enemies, True, True
+        )
+        # Call another enemy if one were destroyed.
+        if collitions:
+            self._create_enemy()
+            self._create_enemy()
+        # print(collitions)
 
 
 if __name__ == '__main__':

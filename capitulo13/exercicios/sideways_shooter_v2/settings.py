@@ -14,14 +14,15 @@ class Settings:
         # self.bg_color = (0, 0, 255)
 
         # Ship settings
-        self.ship_speed = 1.5
+        self.ship_speed = 2.0
 
         # Bullet settings
-        self.bullet_speed = 1.0
+        self.bullet_speed = 2.0
         self.bullet_width = 15
         self.bullet_height = 3
         self.bullet_color = (237, 230, 123)
-        self.bullets_allowed = 3
+        self.bullets_allowed = 4
 
         # Enemy speed
-        self.enemy_max_speed = 2
+        self.enemy_min_speed = 2
+        self.enemy_max_speed = 6

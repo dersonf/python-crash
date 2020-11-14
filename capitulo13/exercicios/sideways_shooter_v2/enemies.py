@@ -1,3 +1,4 @@
+from random import randint, choice
 import pygame
 from pygame.sprite import Sprite
 
@@ -12,7 +13,10 @@ class Enemy(Sprite):
         self.settings = game_sws.settings
 
         # Load the enemy image and sets its rect attribute.
-        self.image = pygame.image.load('images/ufo.bmp')
+        images = ['images/ufo.bmp', 'images/ufov2.bmp']
+        # image = choice(images)
+        # print(image)
+        self.image = pygame.image.load(choice(images))
         self.rect = self.image.get_rect()
 
         # Start each new enemy near the top left of screen.
@@ -21,6 +25,11 @@ class Enemy(Sprite):
 
         # Store de enemy's exact horizontal position.
         self.x = float(self.rect.x)
+
+        # Random speed
+        self.speed = randint(
+            self.settings.enemy_min_speed, self.settings.enemy_max_speed
+            )
 
     def check_edges(self):
         """Move the alien right or left."""
@@ -31,4 +40,4 @@ class Enemy(Sprite):
     def update(self):
         """Move the enemy to the left."""
         # self.x -= self.settings.enemy_speed
-        self.rect.x -= self.settings.enemy_max_speed
+        self.rect.x -= self.speed
