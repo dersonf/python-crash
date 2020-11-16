@@ -1,9 +1,13 @@
 #!/usr/bin/python3
 
 import sys
+from time import sleep
 from random import randint
+
 import pygame
+
 from settings import Settings
+from game_stats import GameStats
 from ship import Ship
 from bullet import Bullet
 from enemies import Enemy
@@ -25,6 +29,9 @@ class SidewaysShooter:
         self.screen_rect = self.screen.get_rect()
         pygame.display.set_caption("Sideways Shooter")
 
+        # Create an instance of game statistics.
+        self.stats = GameStats(self)
+
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.enemies = pygame.sprite.Group()
@@ -35,9 +42,12 @@ class SidewaysShooter:
         """Start the main loop for the game."""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_enemy()
+
+            if self.stats.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_enemy()
+
             self._update_screen()
 
             # Make the most recently drawn screen visible.
@@ -119,6 +129,10 @@ class SidewaysShooter:
         if not self.enemies:
             self._create_enemy()
 
+        # Look for enemy-ship collosion.
+        if pygame.sprite.spritecollideany(self.ship, self.enemies):
+            self._ship_hit()
+
     def _collision(self):
         # Check collitions.
         collitions = pygame.sprite.groupcollide(
@@ -129,6 +143,25 @@ class SidewaysShooter:
             self._create_enemy()
             self._create_enemy()
         # print(collitions)
+
+    def _ship_hit(self):
+        """Respond to the ship being hit by an enemy."""
+        if self.stats.ships_left > 0:
+            # Decrement ship left.
+            self.stats.ships_left -= 1
+
+            # Get rid of any remaining enemies and bullets.
+            self.enemies.empty()
+            self.bullets.empty()
+
+            # Create a new fleet and center the ship.
+            self._create_enemy()
+            self.ship.center_ship()
+
+            # Pause.
+            sleep(1)
+        else:
+            self.stats.game_active = False
 
 
 if __name__ == '__main__':
