@@ -135,7 +135,7 @@ class AlienInvasion:
         # Update bullets position
         self.bullets.update()
 
-        # Get rid of bullets tht have disappeared.
+        # Get rid of bullets that have disappeared.
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)

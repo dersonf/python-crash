@@ -29,8 +29,9 @@ class Target:
 
     def update(self):
         """Move the target up and down."""
+        self.y += self.settings.target_speed * self.settings.target_direction
+        self.rect.y = self.y
 
     def blitme(self):
         """Draw the target."""
         self.screen.blit(self.image, self.rect)
-
