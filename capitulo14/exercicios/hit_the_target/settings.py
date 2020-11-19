@@ -18,7 +18,7 @@ class Settings:
         self.gun_speed = 2
 
         # Bullet settings
-        self.bullet_speed = 2.0
+        self.bullet_speed = 4.0
         self.bullet_width = 15
         self.bullet_height = 3
         self.bullet_color = (237, 230, 123)

@@ -79,9 +79,10 @@ class HitTheTarget:
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullet group."""
-        if len(self.bullets) < self.settings.bullets_allowed:
+        if self.settings.bullets_limit > 0:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+            self.settings.bullets_limit -= 1
 
     def _screen_update(self):
         self.screen.fill(self.settings.bg_color)
@@ -106,9 +107,8 @@ class HitTheTarget:
         """Respond to bullet-target collisions."""
         # Remove any bullets and aliens that have collided.
         if pygame.sprite.spritecollideany(self.target, self.bullets):
-            print("Hit")
-
-            
+            self.bullets.empty()
+            self.settings.bullets_limit = 3
 
 
 if __name__ == '__main__':
