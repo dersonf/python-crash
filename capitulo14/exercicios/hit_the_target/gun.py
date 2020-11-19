@@ -10,7 +10,7 @@ class Gun:
         self.settings = htt_game.settings
         self.screen_rect = self.screen.get_rect()
 
-        self.image = image.load('images/lasergun.bmp')
+        self.image = image.load('images/spaceship.bmp')
         self.rect = self.image.get_rect()
 
         self.rect.midleft = self.screen_rect.midleft

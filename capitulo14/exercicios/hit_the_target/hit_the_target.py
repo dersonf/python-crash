@@ -1,6 +1,7 @@
 from sys import exit
 import pygame
 from settings import Settings
+from button import Button
 from target import Target
 from gun import Gun
 from bullet import Bullet
@@ -23,6 +24,9 @@ class HitTheTarget:
         self.gun = Gun(self)
         self.bullets = pygame.sprite.Group()
 
+        # Make the Play button.
+        self.play_button = Button(self, "Play")
+
     def run_game(self):
         """Start the main loop for the game."""
         while True:
@@ -42,6 +46,12 @@ class HitTheTarget:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+
+    def _check_play_button(self, mouse_pos):
+        """Start a new game when the player clicks Play."""
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked and not self.stats.game_active:
+            self._start_game()
 
     def _check_keydown_events(self, event):
         """Respond for keypresses."""
@@ -90,7 +100,15 @@ class HitTheTarget:
         for bullet in self.bullets.copy():
             if bullet.rect.left > self.settings.screen_width:
                 self.bullets.remove(bullet)
-            # print(len(self.bullets))
+        self._check_bullet_target_collisions()
+
+    def _check_bullet_target_collisions(self):
+        """Respond to bullet-target collisions."""
+        # Remove any bullets and aliens that have collided.
+        if pygame.sprite.spritecollideany(self.target, self.bullets):
+            print("Hit")
+
+            
 
 
 if __name__ == '__main__':
