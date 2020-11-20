@@ -74,6 +74,10 @@ class AlienInvasion:
 
             self._start_game()
 
+    def _check_dificult_buttons(self, mouse_pos):
+        """Select dificult when the player choose one option."""
+        pass
+
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
         if event.key == pygame.K_RIGHT:
