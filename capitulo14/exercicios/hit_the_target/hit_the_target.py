@@ -142,9 +142,12 @@ class HitTheTarget:
             self.bullets.empty()
             self.stats.bullets_left = 3
             self.target.start_position()
+            self.settings.increase_target_speed()
+
         if not self.bullets and self.stats.bullets_left == 0:
             self.stats.game_active = False
             pygame.mouse.set_visible(True)
+            self.settings.initialize_dynamic_settings()
 
 
 if __name__ == '__main__':
