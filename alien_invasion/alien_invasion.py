@@ -72,11 +72,11 @@ class AlienInvasion:
             # Reset the game settings.
             self.settings.initialize_dynamic_settings()
 
-            self._start_game()
+            self._check_dificult_buttons(self)
 
-    def _check_dificult_buttons(self, mouse_pos):
+    def _check_dificult_buttons(self):
         """Select dificult when the player choose one option."""
-        pass
+        self._start_game()
 
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
