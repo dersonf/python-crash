@@ -1,5 +1,5 @@
 class GameStats:
-    """Track statistics for Alien Invasion."""
+    """Track statistics for Hit the Target."""
 
     def __init__(self, htt_game):
         """Initialize statistics."""
@@ -10,4 +10,4 @@ class GameStats:
 
     def reset_stats(self):
         """Initialize statistics that can change during the game."""
-        self.bullets_left = self.settings.bullet_limit
+        self.bullets_left = self.settings.bullets_limit

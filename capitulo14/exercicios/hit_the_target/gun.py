@@ -13,12 +13,17 @@ class Gun:
         self.image = image.load('images/spaceship.bmp')
         self.rect = self.image.get_rect()
 
-        self.rect.midleft = self.screen_rect.midleft
-        self.y = float(self.rect.y)
+        # Call start position
+        self.start_position()
 
         # Movement flag
         self.moving_up = False
         self.moving_down = False
+
+    def start_position(self):
+        # Move the gun/ship to the center.
+        self.rect.midleft = self.screen_rect.midleft
+        self.y = float(self.rect.y)
 
     def update(self):
         """Update the gun position based on the movement flag."""

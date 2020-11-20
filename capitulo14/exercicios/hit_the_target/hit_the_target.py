@@ -1,6 +1,7 @@
 from sys import exit
 import pygame
 from settings import Settings
+from game_stats import GameStats
 from button import Button
 from target import Target
 from gun import Gun
@@ -20,6 +21,9 @@ class HitTheTarget:
         pygame.display.set_caption("Hit the Target")
         # self.screen_rect = self.screen.get_rect()
 
+        # Create an instance to store game statistics.
+        self.stats = GameStats(self)
+
         self.target = Target(self)
         self.gun = Gun(self)
         self.bullets = pygame.sprite.Group()
@@ -31,10 +35,13 @@ class HitTheTarget:
         """Start the main loop for the game."""
         while True:
             self._check_events()
-            self._target_direction()
-            self.gun.update()
-            self.target.update()
-            self._update_bullets()
+
+            if self.stats.game_active:
+                self._target_direction()
+                self.gun.update()
+                self.target.update()
+                self._update_bullets()
+
             self._screen_update()
 
     def _check_events(self):
@@ -46,6 +53,9 @@ class HitTheTarget:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
     def _check_play_button(self, mouse_pos):
         """Start a new game when the player clicks Play."""
@@ -63,6 +73,8 @@ class HitTheTarget:
             self.gun.moving_down = True
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
+        elif event.key == pygame.K_p:
+            self._start_game()
 
     def _check_keyup_events(self, event):
         """Respond for key releases."""
@@ -70,6 +82,21 @@ class HitTheTarget:
             self.gun.moving_up = False
         elif event.key == pygame.K_DOWN:
             self.gun.moving_down = False
+
+    def _start_game(self):
+        """Start a new game."""
+        # Reset the game statistics.
+        self.stats.reset_stats()
+        self.stats.game_active = True
+
+        # Get rid of any remaining aliens and bullets.
+        self.target.start_position()
+        self.bullets.empty()
+
+        self.gun.start_position()
+
+        # Hide the mouse cursor.
+        pygame.mouse.set_visible(False)
 
     def _target_direction(self):
         """Change target direction if hit the edges."""
@@ -79,10 +106,10 @@ class HitTheTarget:
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullet group."""
-        if self.settings.bullets_limit > 0:
+        if self.stats.bullets_left > 0:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
-            self.settings.bullets_limit -= 1
+            self.stats.bullets_left -= 1
 
     def _screen_update(self):
         self.screen.fill(self.settings.bg_color)
@@ -90,6 +117,11 @@ class HitTheTarget:
         self.gun.blitme()
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
+
+        # Make the play button if the game is inactive.
+        if not self.stats.game_active:
+            self.play_button.draw_button()
+
         pygame.display.flip()
 
     def _update_bullets(self):
@@ -108,7 +140,11 @@ class HitTheTarget:
         # Remove any bullets and aliens that have collided.
         if pygame.sprite.spritecollideany(self.target, self.bullets):
             self.bullets.empty()
-            self.settings.bullets_limit = 3
+            self.stats.bullets_left = 3
+            self.target.start_position()
+        if not self.bullets and self.stats.bullets_left == 0:
+            self.stats.game_active = False
+            pygame.mouse.set_visible(True)
 
 
 if __name__ == '__main__':

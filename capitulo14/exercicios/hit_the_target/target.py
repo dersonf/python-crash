@@ -18,6 +18,10 @@ class Target:
         # Fetch the target
         self.rect = self.image.get_rect()
 
+        # Call the start position
+        self.start_position()
+
+    def start_position(self):
         # Start target at right side and middle of screen.
         self.rect.x = self.screen_rect.right - \
             2 * self.settings.target_width
