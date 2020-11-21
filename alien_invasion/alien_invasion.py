@@ -37,8 +37,13 @@ class AlienInvasion:
 
         self._create_fleet()
 
-        # Make the Play buton.
+        # Make the Play button.
         self.play_button = Button(self, "Play")
+
+        # Make dificult buttons.
+        self.easy_button = Button(self, "Easy", "right")
+        self.medium_button = Button(self, "Medium")
+        self.hard_button = Button(self, "Hard", "left")
 
     def run_game(self):
         """Start the main loop for the game."""
@@ -72,7 +77,7 @@ class AlienInvasion:
             # Reset the game settings.
             self.settings.initialize_dynamic_settings()
 
-            self._check_dificult_buttons(self)
+            self._check_dificult_buttons()
 
     def _check_dificult_buttons(self):
         """Select dificult when the player choose one option."""
@@ -88,7 +93,7 @@ class AlienInvasion:
             sys.exit()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
-        elif event.key == pygame.K_p:
+        elif event.key == pygame.K_p and not self.stats.game_active:
             self._start_game()
 
     def _check_keyup_events(self, event):

@@ -2,20 +2,21 @@ import pygame.font
 
 
 class Button:
-    def __init__(self, ai_game, msg):
+    def __init__(self, ai_game, msg, position='center'):
         """Initialize button attributes."""
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
 
         # Set the dimensions and properties of the buton.
         self.width, self.height = 200, 50
-        self.button_color = (0, 255, 0)
-        self.text_color = (255, 255, 255)
+        self.button_color = (100, 100, 100)
+        self.text_color = (0, 0, 0)
         self.font = pygame.font.SysFont(None, 48)
 
         # Build the button's rect object and center it.
         self.rect = pygame.Rect(0, 0, self.width, self.height)
-        self.rect.center = self.screen_rect.center
+        self._buttom_position(position)
+        
 
         # The button message needs to be prepped only once.
         self._prep_msg(msg)
@@ -27,6 +28,20 @@ class Button:
             )
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
+
+    def _buttom_position(self, position):
+        """Choose the button position."""
+        if position == 'center':
+            self.rect.center = self.screen_rect.center
+        elif position == 'left':
+            self.rect.center = self.screen_rect.center
+            self.rect.x -= 2 * self.width
+        elif position == 'right':
+            self.rect.center = self.screen_rect.center
+            self.rect.x += 2 * self.width
+
+
+
 
     def draw_button(self):
         # Draw blank button and then draw message.
