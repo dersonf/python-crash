@@ -2,7 +2,7 @@ import pygame.font
 
 
 class Button:
-    def __init__(self, ai_game, msg, position='center'):
+    def __init__(self, ai_game, msg, position=''):
         """Initialize button attributes."""
         self.screen = ai_game.screen
         self.screen_rect = self.screen.get_rect()
@@ -15,11 +15,27 @@ class Button:
 
         # Build the button's rect object and center it.
         self.rect = pygame.Rect(0, 0, self.width, self.height)
-        self._buttom_position(position)
-        
+        self._position(position)
 
         # The button message needs to be prepped only once.
         self._prep_msg(msg)
+
+    def _position(self, position):
+        position_under_play = self.height * 2
+        position_btw_buttons = self.width * 1.5
+        if not position:
+            self.rect.center = self.screen_rect.center
+        elif position == 'easy':
+            self.rect.center = self.screen_rect.center
+            self.rect.x -= position_btw_buttons
+            self.rect.y += position_under_play
+        elif position == 'normal':
+            self.rect.center = self.screen_rect.center
+            self.rect.y += position_under_play
+        elif position == 'hard':
+            self.rect.center = self.screen_rect.center
+            self.rect.x += position_btw_buttons
+            self.rect.y += position_under_play
 
     def _prep_msg(self, msg):
         """Turn msg into a rendered image and center text on the button."""
@@ -28,20 +44,6 @@ class Button:
             )
         self.msg_image_rect = self.msg_image.get_rect()
         self.msg_image_rect.center = self.rect.center
-
-    def _buttom_position(self, position):
-        """Choose the button position."""
-        if position == 'center':
-            self.rect.center = self.screen_rect.center
-        elif position == 'left':
-            self.rect.center = self.screen_rect.center
-            self.rect.x -= 2 * self.width
-        elif position == 'right':
-            self.rect.center = self.screen_rect.center
-            self.rect.x += 2 * self.width
-
-
-
 
     def draw_button(self):
         # Draw blank button and then draw message.
