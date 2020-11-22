@@ -80,13 +80,13 @@ class AlienInvasion:
             self.settings.bullet_speed = self.settings.bullet_speed_default * 2
         if self.normal_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
             # Set normal game.
-            self._normal_dificult()
+            self._normal_difficult()
         if self.hard_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
             # Only one shot in screen.
             self.settings.bullets_allowed = 1
             self.settings.bullet_speed = self.settings.bullet_speed_default
 
-    def _normal_dificult(self):
+    def _normal_difficult(self):
         # Set normal game.
         self.settings.bullets_allowed = self.settings.bullets_allowed_defaut
         self.settings.bullet_speed = self.settings.bullet_speed_default
@@ -254,7 +254,7 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.stats.game_active = False
-            self._normal_dificult()
+            self._normal_difficult()
             pygame.mouse.set_visible(True)
 
     def _check_aliens_bottom(self):
