@@ -73,14 +73,19 @@ class AlienInvasion:
 
     def _check_button(self, mouse_pos):
         """Start a new game when the player clicks Play."""
-        if self.play_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
+        if self.play_button.rect.collidepoint(mouse_pos) \
+                and not self.stats.game_active:
             self._start_game()
-        if self.easy_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
+        if self.easy_button.rect.collidepoint(mouse_pos) \
+                and not self.stats.game_active:
             self.settings.difficult = "easy"
             print("easy")
-        if self.normal_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
+        if self.normal_button.rect.collidepoint(mouse_pos) \
+                and not self.stats.game_active:
+            self.settings.difficult = "normal"
             print("normal")
-        if self.hard_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
+        if self.hard_button.rect.collidepoint(mouse_pos) \
+                and not self.stats.game_active:
             self.settings.difficult = "hard"
             print("hard")
 
@@ -108,7 +113,7 @@ class AlienInvasion:
         """Start a new game."""
         # Reset the game settings.
         self.settings.initialize_dynamic_settings()
-    
+
         # Reset the game statistics.
         self.stats.reset_stats()
         self.stats.game_active = True
