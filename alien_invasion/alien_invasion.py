@@ -7,6 +7,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 from ship import Ship
 from bullet import Bullet
@@ -28,8 +29,10 @@ class AlienInvasion:
         # self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
 
-        # Create an instance to store game statistics.
+        # Create an instance to score game statistics,
+        # and create a scoreboard.
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -71,25 +74,15 @@ class AlienInvasion:
     def _check_button(self, mouse_pos):
         """Start a new game when the player clicks Play."""
         if self.play_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
-            # Reset the game settings.
-            self.settings.initialize_dynamic_settings()
             self._start_game()
         if self.easy_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
-            # Give more and speedup bullets.
-            self.settings.bullets_allowed = self.settings.bullets_allowed_defaut * 3
-            self.settings.bullet_speed = self.settings.bullet_speed_default * 2
+            self.settings.difficult = "easy"
+            print("easy")
         if self.normal_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
-            # Set normal game.
-            self._normal_difficult()
+            print("normal")
         if self.hard_button.rect.collidepoint(mouse_pos) and not self.stats.game_active:
-            # Only one shot in screen.
-            self.settings.bullets_allowed = 1
-            self.settings.bullet_speed = self.settings.bullet_speed_default
-
-    def _normal_difficult(self):
-        # Set normal game.
-        self.settings.bullets_allowed = self.settings.bullets_allowed_defaut
-        self.settings.bullet_speed = self.settings.bullet_speed_default
+            self.settings.difficult = "hard"
+            print("hard")
 
     def _check_keydown_events(self, event):
         """Respond to keypresses."""
@@ -113,9 +106,13 @@ class AlienInvasion:
 
     def _start_game(self):
         """Start a new game."""
+        # Reset the game settings.
+        self.settings.initialize_dynamic_settings()
+    
         # Reset the game statistics.
         self.stats.reset_stats()
         self.stats.game_active = True
+        self.sb.prep_score()
 
         # Get rid of any remaining aliens and bullets.
         self.aliens.empty()
@@ -142,6 +139,9 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+
+        # Draw the score information.
+        self.sb.show_score()
 
         # Make the play button if the game is inactive.
         if not self.stats.game_active:
@@ -172,11 +172,18 @@ class AlienInvasion:
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
 
+        if collisions:
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+            self.sb.prep_score()
+            self.sb.check_high_score()
+
         if not self.aliens:
             # Destroy existing bullets and create new fleet.
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            print("here")
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
@@ -254,7 +261,6 @@ class AlienInvasion:
             sleep(0.5)
         else:
             self.stats.game_active = False
-            self._normal_difficult()
             pygame.mouse.set_visible(True)
 
     def _check_aliens_bottom(self):
