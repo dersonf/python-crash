@@ -26,22 +26,18 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode(
             (self.settings.screen_width, self.settings.screen_height))
         # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        # self.settings.screen_width = self.screen.get_rect().width
-        # self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
 
         # Create an instance to score game statistics,
         # and create a scoreboard.
         self.stats = GameStats(self)
         self.sb = Scoreboard(self)
-
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
-
         self._create_fleet()
 
-        # Make the Play button.
+        # Make the buttons.
         self.play_button = Button(self, "Play")
         self.easy_button = Button(self, "easy", "easy")
         self.normal_button = Button(self, "normal", "normal")
@@ -53,11 +49,8 @@ class AlienInvasion:
             self._check_events()
 
             if self.stats.game_active:
-                # logging.debug('ship update')
                 self.ship.update()
-                # logging.debug('Bullet update')
                 self._update_bullets()
-                # logging.debug('Alien update')
                 self._update_aliens()
 
             self._update_screen()
@@ -115,13 +108,12 @@ class AlienInvasion:
 
     def _start_game(self):
         """Start a new game."""
-        logging.debug('Start game')
         # Reset the game settings.
+        logging.debug('Start game')
         self.settings.initialize_dynamic_settings()
 
         # Reset the game statistics.
         self.stats.reset_stats()
-        logging.debug('Activate game')
         self.stats.game_active = True
         self.sb.prep_score()
         self.sb.prep_level()
@@ -133,12 +125,12 @@ class AlienInvasion:
         self.bullets.empty()
 
         # Create a new fleet and center the ship.
-        logging.debug('Create fleet.')
+        logging.debug('Creating fleet.')
         self._create_fleet()
+        logging.debug(f"{len(self.aliens)} aliens.")
         self.ship.center_ship()
 
         # Hide the mouse cursor.
-        logging.debug(f"{len(self.aliens)} aliens.")
         pygame.mouse.set_visible(False)
 
     def _fire_bullet(self):
@@ -149,7 +141,6 @@ class AlienInvasion:
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
-        # logging.debug('Update screen')
         # self.screen.fill(self.settings.bg_color)
         self.screen.blit(self.settings.background, [0, 0])
         self.ship.blitme()
@@ -162,7 +153,6 @@ class AlienInvasion:
 
         # Make the play button if the game is inactive.
         if not self.stats.game_active:
-            # logging.debug('Deactivating game')
             self.play_button.draw_button()
             self.easy_button.draw_button()
             self.normal_button.draw_button()
@@ -174,43 +164,43 @@ class AlienInvasion:
     def _update_bullets(self):
         """Update position of bullets and get rid of old bullets."""
         # Update bullets position
-        # logging.debug('Method bullet update')
         self.bullets.update()
 
         # Get rid of bullets that have disappeared.
-        # logging.debug('Cleaning bullets')
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
         # Calling the method to check collision.
-        # logging.debug('Checking collision')
         self._check_bullet_alien_collisions()
 
     def _check_bullet_alien_collisions(self):
         """Respond to bullet-alien collisions."""
-        logging.debug(f"{len(self.aliens)}")
         # Remove any bullets and aliens that have collided.
+        logging.debug(f"{len(self.aliens)}")
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
 
         if collisions:
-            logging.debug('Hit a alien')
+            logging.debug('Hit an alien')
             for aliens in collisions.values():
                 self.stats.score += self.settings.alien_points * len(aliens)
             self.sb.prep_score()
             self.sb.check_high_score()
 
         if not self.aliens:
-            logging.debug('No more aliens')
-            # Destroy existing bullets and create new fleet.
-            self.bullets.empty()
-            self._create_fleet()
-            self.settings.increase_speed()
+            self._start_new_level()
 
-            # Increase level.
-            self.stats.level += 1
-            self.sb.prep_level()
+    def _start_new_level(self):
+        """Destroy existing bullets, create new fleet and raise difficult."""
+        logging.debug("Level up.")
+        self.bullets.empty()
+        self._create_fleet()
+        self.settings.increase_speed()
+
+        # Increase level.
+        self.stats.level += 1
+        self.sb.prep_level()
 
     def _create_fleet(self):
         """Create the fleet of aliens."""
