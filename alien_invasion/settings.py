@@ -13,6 +13,9 @@ class Settings:
         self.bg_color = (0, 45, 180)
         # self.bg_color = (0, 0, 255)
 
+        # FPS value
+        self.FPS = 180
+
         # Ship settings
         self.ship_limit = 3
 
