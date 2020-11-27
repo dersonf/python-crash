@@ -35,6 +35,7 @@ class AlienInvasion:
         self.stats = GameStats(self)
         self.sb = Scoreboard(self)
         self.ship = Ship(self)
+        explosion = Explosion()
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
@@ -157,6 +158,7 @@ class AlienInvasion:
 
         # Draw the score information.
         self.sb.show_score()
+        self.explosions.update(self)
         self.explosions.draw(self.screen)
 
         # Make the play button if the game is inactive.
@@ -191,7 +193,6 @@ class AlienInvasion:
             self.bullets, self.aliens, True, True)
         for collision in collisions:
             logging.debug(f"{collision}")
-            explosion = Explosion(self, collision.rect.center)
             self.explosions.add(explosion)
 
         if collisions:
