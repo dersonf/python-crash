@@ -13,7 +13,6 @@ from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
-from explosion import Explosion
 
 
 class AlienInvasion:
@@ -35,7 +34,6 @@ class AlienInvasion:
         self.stats = GameStats(self)
         self.sb = Scoreboard(self)
         self.ship = Ship(self)
-        explosion = Explosion()
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
         self.explosions = pygame.sprite.Group()
@@ -158,8 +156,6 @@ class AlienInvasion:
 
         # Draw the score information.
         self.sb.show_score()
-        self.explosions.update(self)
-        self.explosions.draw(self.screen)
 
         # Make the play button if the game is inactive.
         if not self.stats.game_active:
@@ -191,9 +187,6 @@ class AlienInvasion:
         logging.debug(f"{len(self.aliens)}")
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
-        for collision in collisions:
-            logging.debug(f"{collision}")
-            self.explosions.add(explosion)
 
         if collisions:
             logging.debug('Hit an alien')
@@ -310,7 +303,7 @@ class AlienInvasion:
 if __name__ == '__main__':
     # Debug mode to find error, switch INFO by DEBUG.
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s'
         )
     # Make a game instance, and run the game.
