@@ -20,7 +20,7 @@ ax.set_ylabel("Square of Value", fontsize=14)
 ax.tick_params(axis='both', which='major', labelsize=14)
 
 # Set the range for each axis.
-ax.axis([0, 1_100, 0 ,1_100_000])
+ax.axis([0, 1_100, 0, 1_100_000])
 
 # To show a graph
 # plt.show()
