@@ -6,7 +6,7 @@ y_values = [x**3 for x in x_values]
 plt.style.use('dark_background')
 fig, ax = plt.subplots()
 # ax.scatter(x_values, y_values, s=10)
-ax.scatter(x_values, y_values, c=y_values, cmap=plt.cm.winter ,s=10)
+ax.scatter(x_values, y_values, c=y_values, cmap=plt.cm.winter, s=10)
 
 # Set chart title and label axes.
 ax.set_title("Cubes Numbers", fontsize=24)

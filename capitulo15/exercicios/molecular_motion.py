@@ -5,21 +5,19 @@ from random_walk import RandomWalk
 # Keep making new walks, as long as the program is active.
 while True:
     # Make a random walk.
-    rw = RandomWalk(50_000)
+    rw = RandomWalk()
     rw.fill_walk()
 
     # Plot the points in the walk.
     plt.style.use('classic')
     # to find the dpi of system run - xdpyinfo | grep -B 2 resolution
-    fig, ax = plt.subplots(figsize=(21,12), dpi=94)
-    point_numbers = range(rw.num_points)
-    ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.copper_r,
-        edgecolors='none', s=1)
+    fig, ax = plt.subplots(figsize=(21, 12), dpi=94)
+    ax.plot(rw.x_values, rw.y_values, linewidth=1)
 
     # Emphasize the first and last points.
     ax.scatter(0, 0, c='green', edgecolors='none', s=100)
     ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none',
-        s=100)
+               s=100)
 
     # Remove the axes.
     ax.get_xaxis().set_visible(False)
