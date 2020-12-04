@@ -14,7 +14,7 @@ with open(filename) as f:
 
     # Get dates, high and low temperatures from this file.
     # Create two empty lists
-    dates, highs, lows  = [], [], []
+    dates, highs, lows = [], [], []
     for row in reader:
         current_date = datetime.strptime(row[2], '%Y-%m-%d')
         high = int(row[5])
