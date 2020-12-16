@@ -17,5 +17,6 @@ def pizzas(request):
 def topping(request, topping_id):
     """Show details about a topping."""
     topping = Topping.objects.get(id=topping_id)
-    context = {'topping': topping}
+    pizza = Pizza.objects.get(id=topping_id)
+    context = {'pizza':pizza ,'topping': topping}
     return render(request, 'pizzas/topping.html', context)
