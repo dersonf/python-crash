@@ -7,7 +7,7 @@
   <ul>
     {% for pizza in pizzas %}
       <li>
-        <a href="{% url 'pizzas:pizzas' pizza.name %}">{{ pizza }}</a>
+        <a href="{% url 'pizzas:topping' pizza.id %}">{{ pizza }}</a>
       </li>
     {% empty %}
       <li>No pizzas have been added yet.</li>

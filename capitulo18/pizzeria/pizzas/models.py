@@ -14,15 +14,13 @@ class Pizza(models.Model):
 class Topping(models.Model):
     """Something specific learned about a topic."""
     pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
-    name = models.TextField()
+    text = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        verbose_name_plural = 'toppings'
 
     def __str__(self):
         """Return a string representation of the model."""
-        if len(self.name) > 50:
-            return f"{self.name[:50]}..."
-        elif len(self.name) <= 50:
-            return f"{self.name}"
+        if len(self.text) > 50:
+            return f"{self.text[:50]}..."
+        elif len(self.text) <= 50:
+            return f"{self.text}"
