@@ -3,12 +3,16 @@
 {% block content %}
 
   <p><b><h2>Posts</h2></b></p>
+  <a href="{% url 'blogs:new_post' %}">Add a new post</a>
   <ul>
   {% for post in posts %}
     <li>
       <p><b>{{ post }}</b></p>
       <p style="color:grey;font-size:11px">{{ post.date_added|date:'d-m-Y H:i' }}</p>
       <p>{{ post.text }}</p>
+      <p>
+        <a href="{% url 'blogs:edit_post' post.id %}">Edit post</a>
+      </p>
     </li>
   {% empty %}
     <li>No topics have been added yet.</li>
