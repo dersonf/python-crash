@@ -30,6 +30,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# My settings
+LOGIN_URL = 'users:login'
+
 INSTALLED_APPS = [
     # My apps
     'learning_logs',
