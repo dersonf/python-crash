@@ -1,41 +1,60 @@
 from random import sample
 from sys import exit
 
-sorteios = 0
-bilhetes = [
-    # 10 numeros
-    # [2, 8, 14, 35, 12, 59, 13, 18, 27, 44],
-    [2, 8, 14, 1, 16, 24, 13],
-    [5, 7, 15, 13, 47, 36, 27],
-    [23, 27, 42, 21, 38, 44, 43],
-    [34, 48, 1, 60, 20, 45, 21],
-    [6, 8, 12, 15, 25, 26, 18],
-    [1, 2, 34, 38, 44, 18, 57],
-    [23, 38, 37, 44, 52, 27, 6],
-]
 
+class NumerosSorteados:
+    """Sorteia numeros da loteria."""
 
-def sortear():
-    """Sorteia numero da Mega Sena."""
-    return sample(range(1, 61),k=6)
+    def __init__(self, inicio=1, fim=60, qtdd=6):
+        """Inicializa classe de sorteio"""
+        self.inicio = inicio
+        self.fim = fim + 1
+        self.qtdd_numeros = qtdd
+        self.sorteios = 0
 
+    def sortear(self):
+        """Sorteia numeros."""
+        self.sorteado = sample(
+            range(self.inicio, self.fim), k=self.qtdd_numeros
+        )
+        self.sorteios += 1
 
-def confere(sorteado, bilhete):
-    """Confere bilhete."""
-    s = sorteado
-    b = bilhete
-    acertos = 0
-    for n in b:
-        if n in s:
-            acertos += 1
-            if acertos == 6:
-                print(f"Voce acertou, foram {sorteios} sorteios.\nbilhete {bilhete}")
-                exit()
-   
+    def conferir(self, bilhete):
+        """Confere bilhete com o número sorteado."""
+        acertos = 0
+        for n in bilhete:
+            if n in self.sorteado:
+                acertos += 1
+                if acertos == self.qtdd_numeros:
+                    print(f"Voce acertou, foram {s.sorteios} sorteios.\n"
+                          f"Os números sorteados foram {s.sorteado}.\n"
+                          f"O bilhete contemplado foi {bilhete}.")
+                    exit()
+ 
 
-while True:
-    sorteado = sortear()
-    sorteios += 1
-    for bilhete in bilhetes:
-        confere(sorteado, bilhete)
+if __name__ == '__main__':
+    bilhetes = [
+        # 10 numeros
+        # [2, 8, 14, 35, 12, 59, 13, 18, 27, 44],
+        # 9 numeros
+        # [6, 12, 14, 32, 38, 54, 39, 40, 26],
+        # 7 numeros
+        # [2, 8, 14, 1, 16, 24, 13],
+        # [5, 7, 15, 13, 47, 36, 27],
+        # [23, 27, 42, 21, 38, 44, 43],
+        # [34, 48, 1, 60, 20, 45, 21],
+        # [6, 8, 12, 15, 25, 26, 18],
+        # [1, 2, 34, 38, 44, 18, 57],
+        # [23, 38, 37, 44, 52, 27, 6],
+        # 15 números
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+    ]
+#    s = NumerosSorteados()
+    s = NumerosSorteados(1, 25, 15)
+
+    while True:
+        s.sortear()
+        for bilhete in bilhetes:
+            s.conferir(bilhete)
 
