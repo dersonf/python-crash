@@ -1,7 +1,5 @@
 from random import sample
 from sys import exit
-from plotly.graph_objs import Bar, Layout
-from plotly import offline
 
 
 class NumerosSorteados:
@@ -25,6 +23,7 @@ class NumerosSorteados:
         self.sorteado = sample(
             range(self.inicio, self.fim), k=self.qtdd_numeros
         )
+        self.sorteado.sort()
         self.sorteios += 1
         self._gera_estatisticas()
 
@@ -112,14 +111,14 @@ if __name__ == '__main__':
 #    s = NumerosSorteados()
     s = NumerosSorteados(1, 25, 15)
 
-    while True:
+    # while True:
+    #     s.sortear()
+    #     for bilhete in bilhetes:
+    #         s.conferir(bilhete)
+
+    sorteados = []
+    for c in range(1_000):
         s.sortear()
-        for bilhete in bilhetes:
-            s.conferir(bilhete)
-
-
-
-[3, 4, 6, 7, 9, 10, 12, 13, 14, 15, 16, 17, 20, 22, 23],
-[1, 3, 6, 8, 9, 11, 12, 14, 15, 16, 17, 19, 20, 21, 22],
-[2, 4, 5, 6, 7, 11, 13, 16, 17, 18, 19, 20, 21, 22, 23],
-[3, 4, 5, 6, 7, 8, 13, 14, 15, 18, 20, 22, 23, 24, 25]
+        sorteados.append(s.sorteado)
+    for sorteado in sorteados:
+        
