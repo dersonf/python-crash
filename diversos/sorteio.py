@@ -1,5 +1,6 @@
 from random import sample
 from sys import exit
+import json
 
 
 class NumerosSorteados:
@@ -99,34 +100,23 @@ class NumerosSorteados:
 
 
 if __name__ == '__main__':
-    bilhetes = [
-        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
-        [1, 2, 3, 5, 6, 7, 8, 11, 15, 16, 19, 20, 21, 23, 24],
-        [1, 2, 3, 5, 6, 8, 9, 11, 12, 16, 17, 19, 23, 24, 25],
-        [1, 2, 3, 6, 8, 10, 11, 14, 17, 18, 19, 20, 22, 24, 25],
-        [1, 2, 3, 7, 8, 9, 12, 14, 15, 18, 20, 21, 23, 24, 25],
-        [1, 2, 7, 8, 9, 10, 12, 14, 15, 20, 21, 22, 23, 24, 25],
-        [1, 3, 4, 5, 6, 8, 9, 10, 13, 14, 16, 22, 23, 24, 25],
-        [1, 3, 4, 7, 8, 13, 15, 16, 18, 19, 21, 22, 23, 24, 25],
-        [1, 3, 5, 6, 8, 9, 10, 13, 14, 15, 16, 18, 20, 21, 24],
-        [1, 3, 6, 7, 8, 9, 10, 11, 13, 14, 16, 17, 20, 21, 25],
-        [1, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 20, 22, 23],
-        [1, 6, 7, 8, 9, 10, 11, 12, 13, 17, 18, 19, 22, 24, 25],
-        [2, 3, 4, 5, 7, 13, 15, 17, 18, 20, 21, 22, 23, 24, 25],
-        [2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 14, 17, 19, 21, 22],
-        [2, 3, 5, 6, 7, 8, 9, 10, 11, 14, 15, 16, 17, 22, 25],
-        [2, 3, 6, 7, 10, 13, 14, 15, 17, 18, 19, 21, 22, 23, 25],
-        [2, 3, 6, 7, 8, 9, 11, 12, 13, 14, 15, 17, 19, 20, 24],
-        [2, 3, 7, 8, 9, 12, 13, 14, 17, 18, 19, 21, 22, 23, 24],
-        [2, 4, 5, 7, 9, 10, 11, 12, 15, 16, 17, 18, 20, 22, 25],
-        [2, 4, 6, 8, 11, 14, 15, 16, 17, 18, 19, 20, 22, 23, 25],
-        [2, 5, 6, 7, 10, 11, 12, 13, 15, 17, 19, 21, 22, 23, 25],
-        [2, 5, 6, 7, 9, 11, 12, 13, 14, 16, 17, 20, 22, 24, 25],
-        [3, 4, 5, 6, 9, 10, 12, 14, 17, 19, 20, 21, 23, 24, 25],
-        [3, 4, 6, 7, 8, 9, 10, 11, 13, 17, 19, 20, 21, 23, 24],
-        ]
-#    s = NumerosSorteados()
+    # bilhetes = []
+    # s = NumerosSorteados()
     s = NumerosSorteados(1, 25, 15)
+
+    filename = 'bilhetes.json'
+    with open(filename) as f:
+        dados = json.load(f)
+        bilhetes = dados['bilhetes']
+    
+    # for bilhete_temp in bilhetes_json:
+    #     bilhete_temp1 = bilhete_temp.replace(" ", "").replace("[","").replace("]","").split(",")
+    #     for numero in bilhete_temp1:
+    #         bilhete.append(int(numero))
+    #         bilhetes.append(bilhete)
+    #         bilhete.clear()
+    
+    # print(bilhetes)
 
     # Loop de sorteios e conferencia
     while True:
@@ -147,3 +137,15 @@ if __name__ == '__main__':
     #     for c in range(sorteios):
     #         s.sortear()
     #         f.write(f"{s.sorteado}\n")
+
+    # Teste do json
+    # print(bilhetes)
+    # b2 = []
+
+
+    # print(b2)
+
+
+        
+        # for numero in bilhete:
+        #     print(numero)
