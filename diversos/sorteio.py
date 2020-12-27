@@ -61,11 +61,11 @@ class NumerosSorteados:
               f"- Prêmios 13 pontos: {self.premios_13_pontos}.\n"
               f"- Prêmios 14 pontos: {self.premios_14_pontos}.\n"
               f"- Vezes contemplado: {len(self.contemplados)}.\n"
-              f"- Total de bilhetes: {len(bilhetes)}.\n")
+              f"- Total de bilhetes: {len(bilhetes)}.")
         if not self.contemplados:
-            print(f"- Bilhete contemplado: 0.")
+            print(f"- Bilhete contemplado: 0.\n")
         else:
-            print(f"- Bilhete contemplados: {self.contemplados[-1]}.")
+            print(f"- Bilhete contemplados: {self.contemplados[-1]}.\n")
         self._reinicia_estatistica()
 
 
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     filename = 'bilhetes.json'
     with open(filename) as f:
         dados = json.load(f)
-        bilhetes = dados['teste16numeros']
+        bilhetes = dados['teste001']
 
     # Loop de sorteios e conferencia
     while True:
