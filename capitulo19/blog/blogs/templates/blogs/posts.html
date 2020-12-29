@@ -8,7 +8,9 @@
   {% for post in posts %}
     <li>
       <p><b>{{ post }}</b></p>
-      <p style="color:grey;font-size:11px">{{ post.date_added|date:'d-m-Y H:i' }}</p>
+      <p style="color:grey;font-size:11px">
+        {{ post.date_added|date:'d-m-Y H:i' }} - {{ post.owner }}
+      </p>
       <p>{{ post.text }}</p>
       <p>
         <a href="{% url 'blogs:edit_post' post.id %}">Edit post</a>
