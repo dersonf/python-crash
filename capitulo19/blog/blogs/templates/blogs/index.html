@@ -1,6 +1,13 @@
 {% extends "blogs/base.html" %}
 
-{% block content %}
-  <p>My blog exercise where I'll post something.</p>
-{% endblock content %}
+{% block page_header %}
+  <div class="jumbotron">
+    <h1 class="display-3">My blog.</h1>
 
+    <p class="lead">Post everything you want to share with the others, news,
+      recipes, something funny and so on.</p>
+
+    <a class="btn btn-lg btn-primary" href="{% url 'users:register' %}"
+      role="button">Register &raquo;</a>
+  </div>
+{% endblock page_header %}
