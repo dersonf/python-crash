@@ -31,7 +31,7 @@ if os.environ.get('DEBUG') == 'TRUE':
 elif os.environ.get('DEBUG') == 'FALSE':
     DEBUG = False
 
-ALLOWED_HOSTS = ['ll.localdomain']
+ALLOWED_HOSTS = ['ll.localdomain', '192.168.1.60']
 
 
 # Application definition
@@ -122,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
