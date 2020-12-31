@@ -25,13 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'l8=mo%0@3=9oz3_i0j#=srw#lizyrnfy1!t1*0)ief%3p!gko4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# if os.environ.get('DEBUG') == 'TRUE':
-#     DEBUG = True
-# elif os.environ.get('DEBUG') == 'FALSE':
-#     DEBUG = False
+# DEBUG = False
+if os.environ.get('DEBUG') == 'TRUE':
+    DEBUG = True
+elif os.environ.get('DEBUG') == 'FALSE':
+    DEBUG = False
 
-ALLOWED_HOSTS = ['ll.example.com']
+ALLOWED_HOSTS = ['ll.localdomain']
 
 
 # Application definition
