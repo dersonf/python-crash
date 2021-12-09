@@ -5,3 +5,4 @@
 /capitulo17/*.html
 **/*_venv/
 *.sqlite3
+venv/

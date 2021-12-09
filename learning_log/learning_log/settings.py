@@ -31,7 +31,7 @@ if os.environ.get('DEBUG') == 'TRUE':
 elif os.environ.get('DEBUG') == 'FALSE':
     DEBUG = False
 
-ALLOWED_HOSTS = ['ll.localdomain', '192.168.1.60']
+ALLOWED_HOSTS = ['ll.localdomain', '192.168.1.60', '127.0.0.1']
 
 
 # Application definition
